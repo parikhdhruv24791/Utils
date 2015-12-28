@@ -1,7 +1,9 @@
-var config = require('./config')
-var express = require('express');
-var bodyParser = require('body-parser')
-var app = module.exports = express();
+var config = require('./config'),
+    express = require('express'),
+    bodyParser = require('body-parser'),
+    app = module.exports = express(),
+    cors = require('cors');
+
 app.listen(config.port, null);
 
 
@@ -12,10 +14,15 @@ process.addListener('uncaughtException', function(err, stack) {
 
 
 // parse application/x-www-form-urlencoded 
-app.use(bodyParser.urlencoded({ extended: true }));
- 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
 // parse application/json 
 app.use(bodyParser.json());
+
+//Allow localhost - remove for production
+app.use(cors());
 
 // common middleware - if required add route as first parameter
 app.use(require('./middleware/middleware'));
@@ -26,7 +33,9 @@ require('./router')(app);
 // If all fails, hit em with the 404
 app.all('*', function(req, res) {
     console.log("No Route");
-    res.send({error: "No Route Defined"});
+    res.send({
+        error: "No Route Defined"
+    });
 });
 
 
