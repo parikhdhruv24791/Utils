@@ -1,0 +1,20 @@
+{
+  "name": "express-mongo-boilerplate",
+  "version": "0.0.1",
+  "description": "Directly use the boilerplate to make REST services with connection to mongodb using mongoose",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "debug": "nodemon --debug server.js"
+  },
+  "author": "Dhruv Parikh",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "mongoose": "^4.3.4",
+    "underscore": "^1.8.3"
+  }
+}
